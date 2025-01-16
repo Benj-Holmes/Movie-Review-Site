@@ -1,0 +1,1 @@
+// user (id, username, email), isAuthenticated, achievements

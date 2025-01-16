@@ -1,0 +1,1 @@
+// array of ratings for specified movie.
