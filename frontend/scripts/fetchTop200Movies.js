@@ -1,26 +1,10 @@
 require('dotenv').config();
 const axios = require("axios");
+const fetchGenreList = require("./fetchGenreList");
 
 const API_KEY = "ce944aeee2a74c43f3e7d6274bd37686";
 const TOP_MOVIE_URL = "https://api.themoviedb.org/3/movie/top_rated";
 const GENRE_URL = "https://api.themoviedb.org/3/genre/movie/list";
-
-/* 
-    The Movies come with an id in place of a genre name,  so we also 
-    fetch the list of genres so we can swap the ids for the genre name.
-*/
-
-const fetchGenreList = async () => {
-    try {
-        const response = await axios.get(GENRE_URL, {
-            params: { api_key: API_KEY },
-        });
-        return response.data.genres;
-    } catch (err) {
-        console.error("Unable to Fetch Genres", err);
-        return [];
-    }
-};
 
 const fetchMovies = async (page) => {
     try {
@@ -60,6 +44,10 @@ const fetch200Movies = async () => {
     for (let page = 1; page <= 10; page++) {
         const next20Movies = await fetchMovies(page);
         const moviesWithGenre = next20Movies.map((movie) => {
+            /* 
+                The Movies come with an id in place of a genre name,  so we also 
+                fetch the list of genres so we can swap the ids for the genre name.
+            */
             const genreNames = movie.genre_ids.map((id) => genres.find((genre) => genre.id === id)?.name || "Unknown");
             return {
                 ...movie,
