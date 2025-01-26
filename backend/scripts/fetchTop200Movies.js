@@ -2,14 +2,15 @@ require('dotenv').config();
 const axios = require("axios");
 const fetchGenreList = require("./fetchGenreList");
 
-const API_KEY = "ce944aeee2a74c43f3e7d6274bd37686";
-const TOP_MOVIE_URL = "https://api.themoviedb.org/3/movie/top_rated";
-const GENRE_URL = "https://api.themoviedb.org/3/genre/movie/list";
+// Specifies direct path to env file, it wasn't working without
+const dotenv = require('dotenv');
+const path = require('path');
+dotenv.config({ path: path.resolve(__dirname, '../.env') }); 
 
 const fetchMovies = async (page) => {
     try {
-        const response = await axios.get(TOP_MOVIE_URL, {
-            params: { api_key: API_KEY, page },
+        const response = await axios.get(process.env.TOP_MOVIE_URL, {
+            params: { api_key: process.env.TMDB_API_KEY, page },
         });
         if (response.status === 200) {
             return response.data.results.map((movie) => {
@@ -57,12 +58,10 @@ const fetch200Movies = async () => {
     
         allMovies = [...allMovies, ...moviesWithGenre];
     }
-    console.log(allMovies);
+    // console.log(allMovies.slice(0, 5));
+    return allMovies;
 }
 
-// the env file isn't connecting up properly so i have hard coded the values for now
-// console.log("API_KEY:", process.env.API_KEY);
-// console.log("TOP_MOVIE_URL:", process.env.TOP_MOVIE_URL);
-// console.log("GENRE_LIST_URL:", process.env.GENRE_LIST_URL);
-
 fetch200Movies();
+
+module.exports = fetch200Movies;

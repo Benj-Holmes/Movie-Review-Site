@@ -13,17 +13,4 @@ const pool = new Pool({
     port: process.env.POSTGRES_DB_PORT
 });
 
-
-// Test the connection
-(async () => {
-    try {
-      const res = await pool.query('SELECT NOW() AS connected_at');
-      console.log('Database connected successfully at:', res.rows[0].connected_at);
-    } catch (err) {
-      console.error('Error connecting to the database:', err);
-    } finally {
-      pool.end();
-    }
-  })();
-
 module.exports = pool;

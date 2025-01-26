@@ -3,8 +3,8 @@ require("dotenv").config();
 
 /*
     This Code ensures the .env variables can load correctly, __dirname is a variable
-    which means the current directory, and ../.env is the path to our .env file, up
-    one level.
+    which means the current directory, and ../.env is the path to our .env file, 
+    which is up one level from current.
 */
 const dotenv = require('dotenv');
 const path = require('path');
@@ -21,7 +21,7 @@ const fetchGenreList = async () => {
         const response = await axios.get(process.env.GENRE_LIST_URL, {
             params: { api_key: process.env.TMDB_API_KEY },
         });
-        console.log(response.data.genres);
+        // console.log(response.data.genres);
         return response.data.genres;
     } catch (err) {
         console.error("Unable to Fetch List of Genres", err);

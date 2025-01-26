@@ -6,7 +6,7 @@ const pool = require('../databaseSetup/db');
     Database.
 */
 
-async function insertGenres() {
+async function addGenresToDB() {
     try {
         const genres = await fetchGenreList();
 
@@ -25,4 +25,4 @@ async function insertGenres() {
     }
 }
 
-insertGenres();
+addGenresToDB();
