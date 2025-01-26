@@ -63,6 +63,8 @@ CREATE TABLE movie_genres (
 CREATE TABLE user_lists (
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
     movie_id INT REFERENCES movies(movie_id) ON DELETE CASCADE,
+    list_name VARCHAR(50) NOT NULL,
+    list_description VARCHAR(100),
     added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, movie_id)
 );
