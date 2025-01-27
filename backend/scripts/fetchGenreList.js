@@ -21,7 +21,6 @@ const fetchGenreList = async () => {
         const response = await axios.get(process.env.GENRE_LIST_URL, {
             params: { api_key: process.env.TMDB_API_KEY },
         });
-        // console.log(response.data.genres);
         return response.data.genres;
     } catch (err) {
         console.error("Unable to Fetch List of Genres", err);

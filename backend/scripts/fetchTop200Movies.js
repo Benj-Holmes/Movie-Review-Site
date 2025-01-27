@@ -58,7 +58,6 @@ const fetch200Movies = async () => {
     
         allMovies = [...allMovies, ...moviesWithGenre];
     }
-    // console.log(allMovies.slice(0, 5));
     return allMovies;
 }
 
