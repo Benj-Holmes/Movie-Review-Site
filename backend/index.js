@@ -1,11 +1,19 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
+// Middleware
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 
 // Test Route
 app.get('/', (req, res) => {
     res.send('Hello World!');
 })
+
+// Route Handlers
+app.use('/movies', require ('./routes/movieRoutes'));
 
 // Server Startup
 const PORT = process.env.PORT || 4000;
