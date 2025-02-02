@@ -18,12 +18,12 @@ const movieSlice = createSlice({
     }
 });
 
-// Export actions
+// actions
 export const { populateTrendingList, selectMovie } = movieSlice.actions;
 
-// Export reducer
+// reducer
 export default movieSlice.reducer;
 
-// Export selectors
+// selectors
 export const selectTrendingMovies = (state) => state.movies.trendingMovies;
 export const selectSelectedMovie = (state) => state.movies.selectedMovie;
