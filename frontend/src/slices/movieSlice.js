@@ -50,5 +50,5 @@ export const { populateTrendingList, selectMovie } = movieSlice.actions;
 export default movieSlice.reducer;
 
 // selectors
-export const selectTrendingMovies = (state) => state.movies.trendingMovies;
-export const selectSelectedMovie = (state) => state.movies.selectedMovie;
+export const trendingSelector = (state) => state.movies.trendingMovies;
+export const movieSelector = (state) => state.movies.selectedMovie;
