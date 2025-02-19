@@ -31,8 +31,10 @@ const Trending = () => {
                     poster={body.poster_path}
                 />) : '' }
                 </div>
+                {/* Left Overlay for scrolling */}
                 <div className='position-absolute top-0 start-0 h-100 overlay'>
                 </div>
+                {/* Right Overlay for scrolling */}
                 <div className='position-absolute top-0 end-0 h-100 overlay'>
                 </div>
             </div>
