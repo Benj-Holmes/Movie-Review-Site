@@ -3,8 +3,12 @@
     position: relative;
 }
 .overlay {
-    width: 17.5%;
+    width: 10%;
     z-index: 1000;
     opacity: 1; 
     background-color: rgba(0, 0, 255, 0.1);
+    cursor: 'pointer'
+}
+.slideshowMovies {
+    scrollbar-width: none;
 }

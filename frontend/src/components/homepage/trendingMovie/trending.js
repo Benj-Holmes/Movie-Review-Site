@@ -16,13 +16,12 @@ const Trending = () => {
     const handleScroll = (direction) => {
     if (containerRef.current) {
       const scrollAmount = 10; // Adjust for smoothness
-      const intervalSpeed = 8; // Interval time in ms to control speed
+      const intervalSpeed = 8; // Interval time in ms
 
       // Clear any existing scroll interval to avoid multiple intervals running
       if (scrolling) {
         clearInterval(scrolling);
       }
-
       const newInterval = setInterval(() => {
         if (containerRef.current) {
           if (direction === 'left') {
@@ -32,7 +31,6 @@ const Trending = () => {
           }
         }
       }, intervalSpeed);
-
       setScrolling(newInterval); // Set new interval
     }
   };
@@ -44,9 +42,9 @@ const Trending = () => {
     }
   };
 
-    useEffect(() => {
-        dispatch(getTrendingMovies());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getTrendingMovies());
+  }, [dispatch]);
 
     return (
         <div>
@@ -55,15 +53,10 @@ const Trending = () => {
             </h1>
             <div className='trendingSlideshow'>
             <motion.div
-        ref={containerRef}
-        className="d-flex flex-row slideshowMovies"
-        style={{
-          overflowX: 'auto', // Makes the container scrollable
-          whiteSpace: 'nowrap',
-        }}
-      >
-        {trending != null
-          ? trending.map((body, index) => (
+              ref={containerRef}
+              className="d-flex flex-row slideshowMovies"
+              style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
+              {trending != null ? trending.map((body, index) => (
               <MovieCard
                 key={index}
                 title={body.title}
@@ -71,37 +64,26 @@ const Trending = () => {
                 vote={body.vote_average}
                 poster={body.poster_path}
               />
-            ))
-          : ''}
-      </motion.div>
+              )) : ''}
+            </motion.div>
 
-      {/* Left Overlay for scrolling */}
-      <motion.div
-        className="position-absolute top-0 start-0 h-100 overlay"
-        style={{
-          backgroundColor: 'rgba(0, 0, 0, 0.2)',
-          width: '50px', // Adjust the width as needed
-          cursor: 'pointer', // Optional: shows a pointer cursor on hover
-        }}
-        whileHover={{ opacity: 1 }}
-        onHoverStart={() => handleScroll('left')}
-        onHoverEnd={stopScrolling}
-      ></motion.div>
+        {/* Left Overlay for scrolling */}
+          <motion.div
+            className="position-absolute top-0 start-0 h-100 overlay"
+            whileHover={{ opacity: 1 }}
+            onHoverStart={() => handleScroll('left')}
+            onHoverEnd={stopScrolling}
+          ></motion.div>
 
-      {/* Right Overlay for scrolling */}
-      <motion.div
-        className="position-absolute top-0 end-0 h-100 overlay"
-        style={{
-          backgroundColor: 'rgba(0, 0, 0, 0.2)',
-          width: '50px', // Adjust the width as needed
-          cursor: 'pointer', // Optional: shows a pointer cursor on hover
-        }}
-        whileHover={{ opacity: 1 }}
-        onHoverStart={() => handleScroll('right')}
-        onHoverEnd={stopScrolling}
-      ></motion.div>
+        {/* Right Overlay for scrolling */}
+          <motion.div
+            className="position-absolute top-0 end-0 h-100 overlay"
+            whileHover={{ opacity: 1 }}
+            onHoverStart={() => handleScroll('right')}
+            onHoverEnd={stopScrolling}
+          ></motion.div>
         </div>
-        </div>
+      </div>
     );
 }
 
