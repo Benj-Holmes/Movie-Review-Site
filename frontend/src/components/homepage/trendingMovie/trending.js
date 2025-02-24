@@ -70,7 +70,6 @@ const Trending = () => {
         {/* Left Overlay for scrolling */}
           <motion.div
             className="position-absolute top-0 start-0 h-100 overlay"
-            whileHover={{ opacity: 1 }}
             onHoverStart={() => handleScroll('left')}
             onHoverEnd={stopScrolling}
           ></motion.div>
@@ -78,7 +77,6 @@ const Trending = () => {
         {/* Right Overlay for scrolling */}
           <motion.div
             className="position-absolute top-0 end-0 h-100 overlay"
-            whileHover={{ opacity: 1 }}
             onHoverStart={() => handleScroll('right')}
             onHoverEnd={stopScrolling}
           ></motion.div>
