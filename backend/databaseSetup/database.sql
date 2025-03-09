@@ -46,6 +46,14 @@ CREATE TABLE reviews (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE user_lists (
+    list_id SERIAL PRIMARY KEY,
+    list_name TEXT NOT NULL,
+    list_description TEXT,
+    user_id INT REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+
 -- Many-to-Many Relationship Tables Below:
 
 CREATE TABLE movie_directors (
@@ -58,15 +66,6 @@ CREATE TABLE movie_genres (
     movie_id INT REFERENCES movies(movie_id) ON DELETE CASCADE,
     genre_id INT REFERENCES genres(genre_id) ON DELETE CASCADE,
     PRIMARY KEY (movie_id, genre_id)
-);
-
-CREATE TABLE user_lists (
-    user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
-    movie_id INT REFERENCES movies(movie_id) ON DELETE CASCADE,
-    list_name VARCHAR(50) NOT NULL,
-    list_description VARCHAR(100),
-    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, movie_id)
 );
 
 CREATE TABLE review_interactions (
@@ -90,4 +89,10 @@ CREATE TABLE user_achievements (
     achievement_id INT REFERENCES achievements(achievement_id) ON DELETE CASCADE,
     achieved_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id, achievement_id)
+);
+
+CREATE TABLE user_list_movies (
+    list_id INT REFERENCES user_lists(list_id) ON DELETE CASCADE,
+    movie_id INT REFERENCES movies(movie_id) ON DELETE CASCADE,
+    PRIMARY KEY (list_id, movie_id)
 );
