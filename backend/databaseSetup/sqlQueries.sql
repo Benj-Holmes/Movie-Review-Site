@@ -13,7 +13,7 @@ ORDER BY
     movie_interactions.interacted_at DESC
 LIMIT 10;
 
--- Select 4 Random lists, and then join them with Movies and List data
+-- Select 4 Random lists, and then join them with Movies and List data (Aliases)
 WITH random_lists AS (
     SELECT list_id, list_name, list_description
     FROM user_lists
