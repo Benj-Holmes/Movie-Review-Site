@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
 
 // Route Handlers
 app.use('/movies', require ('./routes/movieRoutes'));
+app.use('/list', require ('./routes/listRoutes'));
 
 // Server Startup
 const PORT = process.env.PORT || 4000;
